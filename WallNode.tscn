@@ -1,0 +1,11 @@
+[gd_scene format=2]
+
+[node name="WallNode" type="Node2D"]
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls"]
