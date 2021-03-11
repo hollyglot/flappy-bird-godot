@@ -1,11 +1,48 @@
-[gd_scene format=2]
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Walls.gd" type="Script" id=1]
+[ext_resource path="res://assets/cloud.png" type="Texture" id=2]
+[ext_resource path="res://assets/pine_tree.png" type="Texture" id=3]
+
+[sub_resource type="OccluderPolygon2D" id=1]
+polygon = PoolVector2Array( 0.656509, 432.654, 28.9987, 457.909, 119.076, 690.82, 119.637, 752.836, -121.972, 751.994, -119.728, 668.932, -16.7417, 433.776 )
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( 5.87596, 50.5114, 19.3455, 54.7206, 25.2384, 59.4911, 34.2181, 69.3126, 35.3406, 72.1188, 57.2286, 78.2923, 66.7695, 88.3945, 72.3818, 95.4098, 93.1474, 100.18, 104.372, 113.089, 102.127, 121.788, 91.4637, 129.645, 40.3916, 150.41, 28.3252, 152.655, 15.4169, 152.936, 15.4169, 152.936, -17.1345, 152.655, -33.9715, 144.237, -47.7216, 147.604, -56.9819, 147.604, -66.5228, 144.798, -83.3598, 145.921, -99.0742, 130.206, -99.3549, 123.191, -93.4619, 114.772, -85.0435, 110.563, -82.5179, 88.1138, -70.4515, 77.4505, -58.385, 71.2769, -44.3542, 70.1544, -35.0939, 60.8941, -26.3948, 52.7563, -15.4508, 49.1083, 3.91165, 48.8277 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 30, 140 )
 
 [node name="WallNode" type="Node2D"]
 
 [node name="Walls" type="StaticBody2D" parent="."]
+script = ExtResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="Walls"]
+[node name="Tree" type="Sprite" parent="Walls"]
+position = Vector2( 0, 600 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+[node name="TreeColl" type="CollisionPolygon2D" parent="Walls"]
+polygon = PoolVector2Array( 1.21774, 432.654, 31.2436, 460.715, 118.515, 690.82, 119.076, 753.117, -121.411, 752.555, -119.728, 669.213, -16.1804, 433.495 )
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls"]
+[node name="TreeOccluder" type="LightOccluder2D" parent="Walls"]
+occluder = SubResource( 1 )
+
+[node name="Cloud" type="Sprite" parent="Walls"]
+position = Vector2( 0, 100 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 2 )
+
+[node name="CloudOccluder" type="LightOccluder2D" parent="Walls"]
+occluder = SubResource( 2 )
+
+[node name="CloudColl" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2( 0, 50 )
+polygon = PoolVector2Array( 2.22795, -0.611103, 17.3812, 3.87873, 30.8507, 12.5778, 35.9018, 22.1188, 55.5449, 28.0117, 69.0145, 38.3945, 72.1012, 45.9711, 88.9382, 47.9354, 102.408, 62.808, 102.408, 68.9816, 88.9382, 80.4868, 48.2489, 94.7982, 37.3049, 99.5686, 16.5393, 102.936, -16.5733, 102.094, -34.2521, 94.5176, -49.4053, 97.0431, -67.3647, 93.9563, -79.4312, 94.5176, -92.6201, 90.0277, -100.197, 77.1194, -97.3905, 69.8234, -90.3752, 62.808, -85.0435, 58.8794, -82.2373, 38.3945, -72.1352, 28.5729, -59.5075, 22.68, -47.441, 19.5932, -44.0736, 19.5932, -31.7265, 6.96551, -20.7825, 0.511349, -12.6447, -0.0498695 )
+
+[node name="PointArea" type="Area2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/PointArea"]
+position = Vector2( 0, 290 )
+shape = SubResource( 3 )
